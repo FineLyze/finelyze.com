@@ -5,24 +5,23 @@ import { fadeDown, fadeUp } from "@/lib/motion";
 
 export default function Hero() {
   return (
-    <section className="relative flex min-h-screen items-center justify-center bg-gradient-to-b from-gray-50 to-white pt-20">
-      <StaggerGroup className="container-max section-padding text-center">
-        <AnimateIn variants={fadeDown}>
-          <span className="inline-block rounded-full bg-gray-100 px-4 py-1.5 text-xs font-semibold tracking-wide text-gray-600 uppercase mb-6">
-            Now in public beta
-          </span>
-        </AnimateIn>
+    <section className="relative flex min-h-screen items-center justify-center overflow-hidden pt-20">
+      <div className="absolute inset-0 bg-gradient-to-b from-[#0d1829] via-[#080d18] to-[#080d18]" />
+      <div className="absolute inset-0 bg-[radial-gradient(ellipse_80%_50%_at_50%_-10%,rgba(37,99,235,0.18),transparent)]" />
 
-        <AnimateIn>
-          <h1 className="text-5xl sm:text-6xl lg:text-7xl font-bold tracking-tight text-gray-900 text-balance mb-6">
-            Build something <span className="text-blue-600">amazing</span>
+      <StaggerGroup className="container-max section-padding text-center relative z-10">
+        <AnimateIn variants={fadeDown}>
+          <h1 className="text-5xl sm:text-6xl lg:text-7xl font-bold tracking-tight text-white text-balance mb-6">
+            Automated Financial Close.{" "}
+            <span className="text-blue-400">Audit-Grade Accuracy.</span>
           </h1>
         </AnimateIn>
 
         <AnimateIn>
-          <p className="max-w-2xl mx-auto text-lg sm:text-xl text-gray-500 text-balance mb-10">
-            The fastest way to ship your idea. Everything you need — in one place,
-            without the bloat.
+          <p className="max-w-2xl mx-auto text-lg sm:text-xl text-slate-400 text-balance mb-10">
+            FineLyze eliminates manual reconciliation and spreadsheet risk — giving
+            your finance team automated close workflows, real-time variance analysis,
+            and reports built to withstand any audit.
           </p>
         </AnimateIn>
 
@@ -36,7 +35,7 @@ export default function Hero() {
             </Link>
             <Link
               href="#features"
-              className="rounded-full border border-gray-200 bg-white px-8 py-3.5 text-sm font-semibold text-gray-700 hover:bg-gray-50 transition-colors"
+              className="rounded-full border border-white/20 bg-white/5 px-8 py-3.5 text-sm font-semibold text-slate-200 hover:bg-white/10 transition-colors"
             >
               See how it works
             </Link>
