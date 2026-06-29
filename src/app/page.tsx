@@ -1,3 +1,4 @@
+import { getCMSContent } from "@/lib/cms";
 import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
 import Hero from "@/components/sections/Hero";
@@ -8,20 +9,25 @@ import YouTubeLearning from "@/components/sections/YouTubeLearning";
 import FAQ from "@/components/sections/FAQ";
 import CTA from "@/components/sections/CTA";
 
-export default function Home() {
+export const revalidate = 60;
+
+export default async function Home() {
+  const cms = await getCMSContent();
+  const vis = cms.visibility;
+
   return (
     <>
-      <Header />
+      <Header content={cms.header} />
       <main>
-        <Hero />
-        <Features />
-        <Pricing />
-        <TrialDownload />
-        <YouTubeLearning />
-        <FAQ />
-        <CTA />
+        {vis.hero && <Hero content={cms.hero} />}
+        {vis.features && <Features />}
+        {vis.pricing && <Pricing content={cms.pricing} />}
+        {vis.trial && <TrialDownload />}
+        {vis.youtube && <YouTubeLearning />}
+        {vis.faq && <FAQ />}
+        {vis.cta && <CTA />}
       </main>
-      <Footer />
+      <Footer content={cms.footer} />
     </>
   );
 }

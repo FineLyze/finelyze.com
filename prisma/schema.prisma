@@ -1,0 +1,37 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+// CMS content per section (hero, header, footer, pricing, visibility)
+model SiteContent {
+  id        String   @id @default(cuid())
+  section   String   @unique
+  data      Json
+  updatedAt DateTime @updatedAt
+  createdAt DateTime @default(now())
+}
+
+// App-level subscription data, keyed by Clerk user ID.
+// Identity (name, email, status) is Clerk's source of truth.
+model Subscription {
+  id          String    @id @default(cuid())
+  clerkUserId String    @unique
+  tier        Tier      @default(FREE)
+  trialActive Boolean   @default(false)
+  trialStart  DateTime?
+  trialEnd    DateTime?
+  notes       String?
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime  @updatedAt
+}
+
+enum Tier {
+  FREE
+  BASIC
+  PRO
+  ENTERPRISE
+}

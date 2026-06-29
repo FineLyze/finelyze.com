@@ -1,8 +1,9 @@
 import AnimateIn from "@/components/ui/AnimateIn";
 import StaggerGroup from "@/components/ui/StaggerGroup";
 import { scaleIn } from "@/lib/motion";
+import type { PricingContent } from "@/types/cms";
 
-const tiers = [
+const DEFAULT_TIERS = [
   {
     name: "Basic",
     price: "$49",
@@ -55,16 +56,20 @@ const tiers = [
   },
 ];
 
-export default function Pricing() {
+export default function Pricing({ content }: { content?: PricingContent }) {
+  const headline = content?.headline ?? "Simple, transparent pricing";
+  const subtitle = content?.subtitle ?? "Start free, scale as your team grows. No hidden fees, no surprise invoices.";
+  const tiers = content?.tiers ?? DEFAULT_TIERS;
+
   return (
     <section id="pricing" className="bg-[#080d18]">
       <div className="container-max section-padding">
         <AnimateIn className="text-center mb-16">
           <h2 className="text-3xl sm:text-4xl font-bold text-white mb-4">
-            Simple, transparent pricing
+            {headline}
           </h2>
           <p className="text-slate-400 text-lg max-w-xl mx-auto">
-            Start free, scale as your team grows. No hidden fees, no surprise invoices.
+            {subtitle}
           </p>
         </AnimateIn>
 
