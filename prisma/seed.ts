@@ -1,7 +1,9 @@
 import { PrismaClient } from "@prisma/client";
+import { PrismaPg } from "@prisma/adapter-pg";
 import { DEFAULT_CMS } from "../src/lib/cms";
 
-const db = new PrismaClient();
+const adapter = new PrismaPg({ connectionString: process.env.DATABASE_URL! });
+const db = new PrismaClient({ adapter });
 
 async function main() {
   const sections = Object.entries(DEFAULT_CMS) as [string, unknown][];
