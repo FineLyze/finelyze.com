@@ -1,10 +1,8 @@
-import { clerkMiddleware, createRouteMatcher } from '@clerk/nextjs/server';
+import { clerkMiddleware, createRouteMatcher, clerkClient } from '@clerk/nextjs/server';
 import { NextResponse, type NextRequest } from 'next/server';
 
 const isAdminRoute = createRouteMatcher(['/admin(.*)', '/api/admin(.*)']);
 
-// When Clerk keys aren't configured yet, protect admin routes minimally and
-// let the marketing site serve normally — avoids MIDDLEWARE_INVOCATION_FAILED.
 function fallbackMiddleware(req: NextRequest) {
   if (isAdminRoute(req)) {
     return NextResponse.redirect(new URL('/unauthorized', req.url));
@@ -20,9 +18,14 @@ const clerkReady = !!(
 export default clerkReady
   ? clerkMiddleware(async (auth, req) => {
       if (isAdminRoute(req)) {
-        await auth.protect();
-        const { sessionClaims } = await auth();
-        const role = sessionClaims?.metadata?.role;
+        // Redirects to /sign-in if not authenticated
+        const { userId } = await auth.protect();
+
+        // Fetch live user so we don't rely on publicMetadata being in the JWT
+        const client = await clerkClient();
+        const user = await client.users.getUser(userId);
+        const role = (user.publicMetadata as { role?: string })?.role;
+
         if (role !== 'admin') {
           return NextResponse.redirect(new URL('/unauthorized', req.url));
         }
