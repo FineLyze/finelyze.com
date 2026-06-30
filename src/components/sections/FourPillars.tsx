@@ -88,9 +88,8 @@ export default function FourPillars() {
 
         {/* Pillar cards — 2-column grid to accommodate full module lists */}
         <StaggerGroup className="grid gap-5 lg:grid-cols-2 mb-14">
-          {PILLARS.map(({ id, number, name, tagline, color, icon, moduleGroups, integration, differentiator }) => {
+          {PILLARS.map(({ id, name, tagline, color, icon, moduleGroups, differentiator }) => {
             const c = COLOR[color];
-            const totalModules = moduleGroups.reduce((sum, g) => sum + g.items.length, 0);
             const isGrouped = moduleGroups.length > 1;
 
             return (
@@ -98,16 +97,6 @@ export default function FourPillars() {
                 <div
                   className={`relative h-full rounded-2xl border border-white/[0.08] bg-white/[0.03] p-6 flex flex-col gap-4 transition-all duration-300 hover:bg-white/[0.05] hover:shadow-xl ${c.glow}`}
                 >
-                  {/* Number + module count */}
-                  <div className="flex items-center justify-between">
-                    <span className={`text-xs font-mono font-bold ${c.accent} opacity-60`}>
-                      {number}
-                    </span>
-                    <span className={`text-[10px] font-mono border ${c.badge} rounded-full px-2 py-0.5`}>
-                      {totalModules} modules
-                    </span>
-                  </div>
-
                   {/* Icon + name */}
                   <div className="flex items-start gap-3">
                     <span className={`p-2 rounded-lg border ${c.icon} shrink-0`}>
@@ -165,13 +154,6 @@ export default function FourPillars() {
                     )}
                   </div>
 
-                  {/* Integration callout */}
-                  <div className={`rounded-lg border ${c.badge} bg-white/[0.02] px-3 py-2`}>
-                    <p className="text-[11px] text-slate-500 leading-snug">
-                      <span className={`font-semibold ${c.accent}`}>Connected: </span>
-                      {integration}
-                    </p>
-                  </div>
                 </div>
               </AnimateIn>
             );
