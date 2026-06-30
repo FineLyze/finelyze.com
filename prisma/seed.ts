@@ -13,7 +13,7 @@ async function main() {
       where: { section },
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
       create: { section, data: data as any },
-      update: {},
+      update: { data: data as any },
     });
     console.log(`  seeded: ${section}`);
   }

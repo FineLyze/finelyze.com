@@ -10,22 +10,23 @@ import type {
 
 export const DEFAULT_CMS: CMSContent = {
   hero: {
-    headline: 'Automated Financial Close.',
-    headlineAccent: 'Audit-Grade Accuracy.',
+    headline: 'Four Pillars.',
+    headlineAccent: 'One Unified ERP.',
     subtitle:
-      'FineLyze eliminates manual reconciliation and spreadsheet risk — giving your finance team automated close workflows, real-time variance analysis, and reports built to withstand any audit.',
-    primaryButtonText: 'Start for free',
+      'FineLyze connects Corporate Accounting, Taxes, Supply Chain, and FP&A into one intelligent system — every transaction traceable from origin to final report.',
+    primaryButtonText: 'Start Free Trial',
     primaryButtonHref: '#cta',
-    secondaryButtonText: 'See how it works',
-    secondaryButtonHref: '#features',
+    secondaryButtonText: 'See the Platform',
+    secondaryButtonHref: '#pillars',
   },
   header: {
     navLinks: [
-      { label: 'Features', href: '#features' },
+      { label: 'Platform', href: '#pillars' },
+      { label: 'How It Works', href: '#workflow' },
       { label: 'Pricing', href: '#pricing' },
       { label: 'FAQ', href: '#faq' },
     ],
-    ctaText: 'Get started',
+    ctaText: 'Start Free Trial',
     ctaHref: '#cta',
   },
   footer: {
