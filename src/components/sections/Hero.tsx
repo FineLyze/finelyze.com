@@ -21,7 +21,7 @@ export default function Hero({ content }: { content?: HeroContent }) {
   const c = content ?? DEFAULT;
 
   return (
-    <section className="relative flex min-h-screen items-center justify-center overflow-hidden pt-20">
+    <section className="relative flex min-h-screen flex-col overflow-hidden">
       {/* Background */}
       <div className="absolute inset-0 bg-gradient-to-b from-[#0a1020] via-[#080d18] to-[#080d18]" />
       <div className="absolute inset-0 bg-[radial-gradient(ellipse_70%_60%_at_50%_-5%,rgba(37,99,235,0.14),transparent)]" />
@@ -35,10 +35,17 @@ export default function Hero({ content }: { content?: HeroContent }) {
         }}
       />
 
-      <StaggerGroup className="container-max section-padding text-center relative z-10 flex flex-col items-center">
+      {/*
+        flex-1 + justify-center = vertically centered within the viewport.
+        pt-24/pt-28 acts as a hard floor so the headline can never slip
+        behind the fixed nav regardless of content height or viewport size.
+        section-padding (py-16+) is intentionally NOT used here —
+        it's meant for regular content sections, not heroes.
+      */}
+      <StaggerGroup className="container-max relative z-10 flex flex-1 flex-col items-center justify-center text-center px-4 sm:px-6 lg:px-8 pt-24 sm:pt-28 pb-16">
         {/* Eyebrow */}
         <AnimateIn variants={fadeDown}>
-          <div className="inline-flex items-center gap-2 rounded-full border border-blue-500/30 bg-blue-500/10 px-4 py-1.5 mb-8">
+          <div className="inline-flex items-center gap-2 rounded-full border border-blue-500/30 bg-blue-500/10 px-4 py-1.5 mb-6">
             <span className="h-1.5 w-1.5 rounded-full bg-blue-400 animate-pulse" />
             <span className="text-xs font-medium text-blue-300 tracking-wide uppercase">
               Enterprise ERP Platform
@@ -48,7 +55,7 @@ export default function Hero({ content }: { content?: HeroContent }) {
 
         {/* Headline */}
         <AnimateIn variants={fadeDown}>
-          <h1 className="font-display text-6xl sm:text-7xl lg:text-8xl font-bold tracking-tight leading-[1.05] text-white text-balance mb-4">
+          <h1 className="font-display text-5xl sm:text-6xl lg:text-7xl font-bold tracking-tight leading-[1.08] text-white text-balance mb-5">
             {c.headline}
             <br />
             <span className="text-blue-400">{c.headlineAccent}</span>
@@ -57,14 +64,14 @@ export default function Hero({ content }: { content?: HeroContent }) {
 
         {/* Subtitle */}
         <AnimateIn>
-          <p className="max-w-2xl mx-auto text-lg sm:text-xl text-slate-400 text-balance mb-10 leading-relaxed">
+          <p className="max-w-2xl mx-auto text-base sm:text-lg text-slate-400 text-balance mb-8 leading-relaxed">
             {c.subtitle}
           </p>
         </AnimateIn>
 
         {/* CTAs */}
         <AnimateIn variants={fadeUp}>
-          <div className="flex flex-col sm:flex-row gap-4 justify-center mb-14">
+          <div className="flex flex-col sm:flex-row gap-3 justify-center mb-10">
             <Link
               href={c.primaryButtonHref}
               className="rounded-full bg-blue-600 px-8 py-3.5 text-sm font-semibold text-white hover:bg-blue-500 transition-colors shadow-lg shadow-blue-900/40"
@@ -98,7 +105,7 @@ export default function Hero({ content }: { content?: HeroContent }) {
       </StaggerGroup>
 
       {/* Scroll indicator */}
-      <div className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 opacity-40">
+      <div className="absolute bottom-8 left-1/2 -translate-x-1/2 z-10 flex flex-col items-center gap-2 opacity-40">
         <span className="text-xs text-slate-500 tracking-widest uppercase">Scroll</span>
         <div className="w-px h-8 bg-gradient-to-b from-slate-500 to-transparent" />
       </div>
