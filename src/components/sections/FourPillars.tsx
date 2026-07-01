@@ -88,7 +88,7 @@ export default function FourPillars() {
 
         {/* Pillar cards — 2-column grid to accommodate full module lists */}
         <StaggerGroup className="grid gap-5 lg:grid-cols-2 mb-14">
-          {PILLARS.map(({ id, name, tagline, color, icon, moduleGroups, differentiator }) => {
+          {PILLARS.map(({ id, name, tagline, color, icon, moduleGroups }) => {
             const c = COLOR[color];
             const isGrouped = moduleGroups.length > 1;
 
@@ -107,16 +107,6 @@ export default function FourPillars() {
                       <p className={`text-xs mt-0.5 ${c.accent}`}>{tagline}</p>
                     </div>
                   </div>
-
-                  {/* Differentiator callout (Taxes) */}
-                  {differentiator && (
-                    <div className={`rounded-lg border ${c.diff} px-3 py-2.5`}>
-                      <p className={`text-[11px] font-semibold ${c.accent} mb-0.5`}>
-                        Key differentiator
-                      </p>
-                      <p className="text-[11px] text-slate-400 leading-snug">{differentiator}</p>
-                    </div>
-                  )}
 
                   {/* Module list */}
                   <div className="flex-1">
