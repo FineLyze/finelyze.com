@@ -40,3 +40,15 @@ next-env.d.ts
 
 # clerk configuration (can include secrets)
 /.clerk/
+
+# databases
+*.db
+*.sqlite
+*.sqlite3
+dev.db
+
+# secrets
+*.pem
+*.key
+secrets/
+credentials.json
